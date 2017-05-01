@@ -1,0 +1,15 @@
+To import the database:
+Open command prompt from C:\xampp\mysql\bin
+mysql -u root -p < motivationaldb.sql
+
+In case import doesn't work, here are the sql commands to create a new DB from scratch:
+create database motivationaldb;
+create user server@localhost identified by 'terps';
+grant all on motivationaldb.* to server@localhost;
+create table users (username varchar(50) not null, password varchar(255) not null, email varchar(255), primary key (username));
+create table playlist (playlist_id int not null auto_increment, username varchar(50) not null, primary key (playlist_id), foreign key (username) references users(username) on delete cascade);
+create table playlist_to_video (playlist_id int not null, video_url varchar(255) not null, foreign key (playlist_id) references playlist(playlist_id) on delete cascade);
+
+In case you forgot how to login to mysql on command line:
+Open command prompt from C:\xampp\mysql\bin
+mysql.exe -u root -p
