@@ -64,7 +64,7 @@ FORM;
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
                 <link rel="stylesheet" href="style.css">
-                <title>Login - Motivational Videos Database</title>	
+                <title>Login - Database of Motivational Videos</title>	
             </head>
             
             <body>
