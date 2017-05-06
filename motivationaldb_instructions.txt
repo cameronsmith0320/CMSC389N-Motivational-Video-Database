@@ -2,6 +2,11 @@ To import the database:
 Open command prompt from C:\xampp\mysql\bin
 mysql -u root -p < motivationaldb.sql
 
+The dump does NOT include user privileges so you need to do the following:
+Login to the MariaDB console with: mysql.exe -u root -p
+create user 'server'@'localhost' identified by 'terps';
+grant all on motivationaldb.* 'server'@'localhost';
+
 In case import doesn't work, here are the sql commands to create a new DB from scratch:
 create database motivationaldb;
 create user server@localhost identified by 'terps';

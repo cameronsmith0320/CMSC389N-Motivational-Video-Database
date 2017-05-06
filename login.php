@@ -1,4 +1,7 @@
 <?php
+	//TODO:: See other TODOs in createAccount, session is opened so I could test storing images in the DB
+	session_start();
+	
     $body = "";
     if (isset($_POST["login"])) {
         $username = trim($_POST["username"]);
@@ -37,7 +40,10 @@
 INVALID;
             }
             else {
-                header("Location: myVideos.html");
+				//TODO:: Storing username in session is for testing functionality
+				$_SESSION['username'] = $username;
+				
+                header("Location: myVideos.php");
             }
         }
         $result->close();

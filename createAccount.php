@@ -1,4 +1,7 @@
 <?php
+	//TODO:: See other TODO below, session is opened so that I can test functionality of image in DB
+	session_start();
+	
     $body = "";
     $error_count = 0;
     $errors = "";
@@ -12,6 +15,9 @@ PASS;
     $emailForm = <<<EMAIL
         Email: <input type="email" id="email" name="email" onblur="validate()" required />&nbsp;&nbsp;<em>Email addresses must be no longer than 30 characters.</em><br>
 EMAIL;
+	$imageForm = <<<IMAGE
+		Profile Picture:<input type="file" name="profileImage">
+IMAGE;
     $submitButton = <<<SUBMIT
         <input type="submit" name="create" value="Create Account" />
 SUBMIT;
@@ -20,6 +26,10 @@ SUBMIT;
         $password = trim($_POST["password"]);
         $verifyPassword = trim($_POST["verifyPassword"]);
         $email = trim($_POST["email"]);
+		$imageFile = null;
+		if($_FILES["profileImage"]["error"] == 0) {
+			$imageFile=addslashes (file_get_contents($_FILES['profileImage']['tmp_name']));
+		}
         
         $host = "localhost";
         $user = "server";
@@ -84,23 +94,32 @@ EMAIL_VALID;
         if ($error_count !== 0) {
             $body = <<<BODY
                 $errors
-                <form action="{$_SERVER["PHP_SELF"]}" method="post">
+                <form action="{$_SERVER["PHP_SELF"]}" method="post" enctype="multipart/form-data">
                     $usernameForm
                     $passwordForm
                     $emailForm
+					$imageForm
                     $submitButton
                 </form>
 BODY;
         }
         else {
-            $query2 = "insert into $table values('$username', password('$password'), '$email')";
+			if($imageFile != null) {
+				$query2 = "insert into $table values('$username', password('$password'), '$email', '$imageFile')";
+			} else {
+				$query2 = "insert into $table (username, password, email) values('$username', password('$password'), '$email')";
+			}
+            
             
             $result2 = $db_connection->query($query2);
         	if (!$result2) {
         		die("Insertion failed: " . $db_connection->error);
         	}
             else {
-        		header("Location: myVideos.html");
+				//TODO:: Storing the username in session was something I added just so I could test functionality
+				$_SESSION['username'] = $username;
+				
+        		header("Location: myVideos.php");
         	}
             $result2->close();
             $db_connection->close();
@@ -111,10 +130,11 @@ BODY;
             <div id="usernameErrors"></div>
             <div id="passwordErrors"></div>
             <div id="emailErrors"></div>
-            <form action="{$_SERVER["PHP_SELF"]}" method="post">
+            <form action="{$_SERVER["PHP_SELF"]}" method="post" enctype="multipart/form-data">
                 $usernameForm
                 $passwordForm
                 $emailForm
+				$imageForm
                 $submitButton
             <form>
 FORM;
