@@ -10,10 +10,23 @@ main();
 
 function main(){
     let footer = "&copy;2017 Database of Motivation Videos",
-        username = "logged in as: " + "TEST_USER";
+        php_user = document.getElementById("phpjs-username").textContent,
+        loginbtn = document.getElementById("loginbtn"),
+        username;
+
+
+    if(php_user){
+        username = "logged in as: " + php_user;
+        loginbtn.innerHTML = '<a href="logout.php" class="btn btn-default btn-sm"> logout </a>';
+    }else{
+        username = "Not logged in. ";
+        loginbtn.innerHTML = '<a href="createAccount.php" class="btn btn-primary btn-sm"> new account </a>' +
+            '<a href="login.php" class="btn btn-default btn-sm"> login </a>';
+    }
 
     if(document.getElementById("footer"))
         document.getElementById("footer").innerHTML = footer;
     if(document.getElementById("username"))
         document.getElementById("username").innerHTML = username;
+
 }

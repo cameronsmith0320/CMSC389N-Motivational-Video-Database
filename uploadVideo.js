@@ -3,7 +3,8 @@
 main();
 
 function main(){
-    document.getElementById("playlistSelect").onchange = playlistSelectChange;
+    if(document.getElementById("playlistSelect"))
+        document.getElementById("playlistSelect").onchange = playlistSelectChange;
 }
 
 function playlistSelectChange(){

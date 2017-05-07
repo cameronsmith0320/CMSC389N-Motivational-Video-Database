@@ -91,8 +91,6 @@ ENDTAGS;
 ?>
 
 
-
-
 <html>
     <head>
         <title>Upload Video</title>
@@ -110,13 +108,15 @@ ENDTAGS;
                     <h3>Database of Motivational Videos</h3>
                 </div>
                 <div class="pull-right">
-                    <span class="username"></span>
-                    <form action="logout.php">
-                        <button class="btn btn-default btn-sm" type="submit" id="logout"> logout </button>
-                    </form>
+                    <span class="loginbtn" id="loginbtn"></span>
+                </div>
+                <div class="pull-right">
+                    <span class="username" id="username"></span>
+                    &nbsp;
                 </div>
                 <div class="clearfix"></div>
             </header>
+
             <hr>
             <form action="" method="POST">
                 <div class="form-group">
@@ -125,7 +125,6 @@ ENDTAGS;
                 </div>
 <?php echo $playlistForm ?>
                 <span id="newPlaylist"></span>
-
 
                     <br>
 
@@ -141,6 +140,7 @@ ENDTAGS;
             </footer>
         </div>
 
+        <span id="phpjs-username" style="display: none;"><?php echo $username ?></span>
         <script src="style.js"></script>
         <script src="uploadVideo.js"></script>
 
