@@ -21,6 +21,7 @@
 
 CREATE DATABASE /*!32312 IF NOT EXISTS*/ `motivationaldb` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
+
 USE `motivationaldb`;
 
 --
@@ -108,3 +109,15 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2017-05-06 21:58:29
+
+GRANT ALL ON motivationaldb.* TO server@localhost IDENTIFIED BY 'terps';
+
+INSERT INTO users VALUES ('test', 'testpass', 'test@email.com', NULL);
+INSERT INTO playlist VALUES (-3, 'test', 'test_playlist3');
+INSERT INTO playlist VALUES (-2, 'test', 'test_playlist2');
+INSERT INTO playlist VALUES (-1, 'test', 'test_playlist1');
+INSERT INTO playlist_to_video VALUES (-1, 'testvideo1');
+INSERT INTO playlist_to_video VALUES (-1, 'testvideo2');
+INSERT INTO playlist_to_video VALUES (-2, 'testvideo1');
+
+USE motivationaldb;

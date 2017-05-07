@@ -12,6 +12,8 @@ function main(){
     let footer = "&copy;2017 Database of Motivation Videos",
         username = "logged in as: " + "TEST_USER";
 
-    document.getElementById("footer").innerHTML = footer;
-    document.getElementById("username").innerHTML = username;
+    if(document.getElementById("footer"))
+        document.getElementById("footer").innerHTML = footer;
+    if(document.getElementById("username"))
+        document.getElementById("username").innerHTML = username;
 }
