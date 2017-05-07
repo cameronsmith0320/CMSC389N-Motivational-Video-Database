@@ -28,6 +28,7 @@ TEST;
                     $body
                     <hr>
                     <footer>
+		    	&copy;2017 Database of Motivational Videos
                     </footer>
                 </div>
             </body>
