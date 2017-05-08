@@ -31,14 +31,14 @@
                 <div class="alert alert-danger"> <strong>Invalid username-password combination.</strong> Please try again.</div>
                 <form action="{$_SERVER["PHP_SELF"]}" method="post">
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="username"> Username </label>
-                        <div class="col-sm-5">
+                        <label class="col-sm-1 col-form-label" for="username"> Username </label>
+                        <div class="col-sm-2">
                             <input class="form-control" id="username" type="text" name="username" value="$username" required /><br>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="password"> Password </label>
-                        <div class="col-sm-5">
+                        <label class="col-sm-1 col-form-label" for="password"> Password </label>
+                        <div class="col-sm-2">
                             <input class="form-control" id="password" type="password" name="password" required /><br>
                         </div>
                     </div>
@@ -61,14 +61,14 @@ INVALID;
         $body = <<<FORM
                 <form action="{$_SERVER["PHP_SELF"]}" method="post">
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="username"> Username </label>
-                        <div class="col-sm-5">
-                            <input class="form-control" id="username" type="text" name="username" value="$username" required /><br>
+                        <label class="col-sm-1 col-form-label" for="username"> Username </label>
+                        <div class="col-sm-2">
+                            <input class="form-control" id="username" type="text" name="username" value="" required /><br>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="password"> Password </label>
-                        <div class="col-sm-5">
+                        <label class="col-sm-1 col-form-label" for="password"> Password </label>
+                        <div class="col-sm-2">
                             <input class="form-control" id="password" type="password" name="password" required /><br>
                         </div>
                     </div>
@@ -99,7 +99,7 @@ FORM;
 								</form>
                     </header>
                     <hr>
-                    <h4>Login</h4>
+                    <h4>Login</h4><br>
                     $body
                     <hr>
                     <footer>

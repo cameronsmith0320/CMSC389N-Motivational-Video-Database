@@ -7,8 +7,8 @@
     $errors = "";
     $usernameForm = <<<USER
         <div class="row form-group">
-            <label class="col-sm-3 col-form-label" for="username"> Username </label>
-            <div class="col-sm-6">
+            <label class="col-sm-1 col-form-label" for="username"> Username </label>
+            <div class="col-sm-3">
                 <input type="text" class="form-control" name="username" id="username" onblur="validate()" required />
                 <small id="userHelp" class="form-text text-muted"> Username must be less than 20 characters long </small>
             </div>
@@ -17,14 +17,14 @@ USER;
     $passwordForm = <<<PASS
         <div class="form-group">
             <div class="row">
-                <label class="col-sm-3 col-form-label" for="password"> Password </label>
-                <div class="col-sm-6">
+                <label class="col-sm-1 col-form-label" for="password"> Password </label>
+                <div class="col-sm-3">
                     <input type="password" class="form-control" id="password" name="password" required />
                 </div>
             </div>
             <div class="row">
-                <label class="col-sm-3 col-form-label" for="verifyPassword"> Verify </label>
-                <div class="col-sm-6">
+                <label class="col-sm-1 col-form-label" for="verifyPassword"> Confirm Password </label>
+                <div class="col-sm-3">
                     <input type="password" class="form-control" name="verifyPassword" id="verifyPassword" onblur="validate()" required />
                 </div>
             </div>
@@ -33,8 +33,8 @@ PASS;
 
     $emailForm = <<<EMAIL
         <div class="row form-group">
-            <label class="col-sm-3 col-form-label" for="email"> Email </label>
-            <div class="col-sm-6">
+            <label class="col-sm-1 col-form-label" for="email"> Email </label>
+            <div class="col-sm-3">
                 <input type="email" class="form-control" id="email" name="email" onblur="validate()" required />
             <small id="emailHelp" class="form-text text-muted"> Email must be less than 30 characters long </small>
             </div>
@@ -42,8 +42,8 @@ PASS;
 EMAIL;
     $imageForm = <<<IMAGE
         <div class="row form-group">
-            <label class="col-sm-3 col-form-label" for="profileImage"> Profile Picture: </label>
-            <div class="col-sm-6">
+            <label class="col-sm-1 col-form-label" for="profileImage"> Profile Picture: </label>
+            <div class="col-sm-3">
                 <input type="file" class="form-control-file" id="profileImage" name="profileImage"/>
             </div>
         </div>
@@ -93,8 +93,8 @@ SUBMIT;
                     $errors .= "<div id=\"usernameErrors\"></div>";
                     $usernameForm = <<<USER_VALID
                         <div class="row form-group">
-                            <label class="col-sm-2 col-form-label" for="username"> Username </label>
-                            <div class="col-sm-10">
+                            <label class="col-sm-1 col-form-label" for="username"> Username </label>
+                            <div class="col-sm-3">
                                 <input type="text" class="form-control" name="username" value="$username" id="username" onblur="validate()" required />
                             </div>
                             <small id="userHelp" class="form-text text-muted"> Username must be less than 20 characters long </small>
@@ -112,15 +112,18 @@ USER_VALID;
             $errors .= "<div id=\"passwordErrors\"></div>";
             $passwordForm = <<<PASS_VALID
                 <div class="row form-group">
-                    <label class="col-sm-2 col-form-label" for="password"> Password </label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-1 col-form-label" for="password"> Password </label>
+                    <div class="col-sm-3">
                         <input type="password" class="form-control" value="$password" id="password" name="password" required />
                     </div>
-                    <div class="col-sm-10">
-                        <label for="verifyPassword"> Verify Password </label>
-                    </div>
-                    <input type="password" class="form-control" value="$verifyPassword" name="verifyPassword" id="verifyPassword" onblur="validate()" required />
                 </div>
+				
+				<div class="row form-group">
+				<label class="col-sm-1" for="verifyPassword"> Verify Password </label>
+                    <div class="col-sm-3">
+                        <input type="password" class="form-control" value="$verifyPassword" name="verifyPassword" id="verifyPassword" onblur="validate()" required />
+                </div>
+				</div>
 PASS_VALID;
         }
         if (strlen($email) > 30) {
@@ -131,11 +134,12 @@ PASS_VALID;
             $errors .="<div id=\"emailErrors\"></div>";
             $emailForm = <<<EMAIL_VALID
                 <div class="row form-group">
-                    <label class="col-sm-2 col-form-label" for="email"> Email </label>
-                    <div class="col-sm-10">
+                    <label class="col-sm-1 col-form-label" for="email"> Email </label>
+                    <div class="col-sm-3">
                         <input type="email" class="form-control" value="$email" id="email" name="email" onblur="validate()" required />
+						<small id="emailHelp" class="form-text text-muted"> Email must be less than 30 characters long </small>
                     </div>
-                    <small id="emailHelp" class="form-text text-muted"> Email must be less than 30 characters long </small>
+                    
                 </div>
 EMAIL_VALID;
         }

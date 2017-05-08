@@ -16,7 +16,7 @@ function main(){
 
 
     if(php_user){
-        username = "logged in as: " + php_user;
+        username = "Logged in as: " + php_user;
         loginbtn.innerHTML = '<a href="index.html" class="btn btn-default btn-sm"> Logout </a>';
     }else{
         username = "Not logged in. ";

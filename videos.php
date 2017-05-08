@@ -3,6 +3,7 @@
 <?php
 session_start();
 require_once("db.php");
+error_reporting(E_ERROR | E_PARSE);
 
 if(isset($_POST)){
     if(isset($_POST['delete'])){
@@ -72,7 +73,7 @@ TABLE;
 <td>
 <div class="form-group">
 <form method="POST">
-    <button class="btn btn-primary" type="submit" name="view" value="$video_url"> View </button>
+    <button class="btn btn-primary" type="submit" name="view" value="$video_url" target="_blank"> View </button>
     <button class="btn btn-danger" type="submit" onclick="return(confirm('Are you sure you want to delete this video?'));" name="delete" value="$video_url"> Delete </button>
 </form>
 </div>

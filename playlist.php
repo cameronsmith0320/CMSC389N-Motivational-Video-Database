@@ -121,4 +121,11 @@ $db_connection->close();
         <span id="phpjs-username" style="display: none;"><?php echo $username ?></span>
         <script src="style.js"></script>
     </body>
+	
+	<hr>
+                    <footer>
+                    <div class="text-center">
+                    &copy;2017 Database of Motivational Videos
+                    </div>
+                    </footer>
 </html>

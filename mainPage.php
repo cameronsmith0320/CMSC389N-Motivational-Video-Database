@@ -104,20 +104,25 @@
 					echo '</div>';
 					$firstVideoUrl = "https://www.youtube.com/watch?v=".$list_of_video_ids[0];
 					$addToPlaylistForm = <<<PLAYLIST
-					<div class="text-center">'
+					<div class="text-center">
 						<form action="uploadVideo.php" method="post">
 							<input type="hidden" name="video_url" value="$firstVideoUrl">
 							<input class="btn btn-primary" type="submit" value="Add to my playlist"/>
 						</form>
 					</div>
-PLAYLIST;	
+PLAYLIST;
 				} 
 				
 				echo $addToPlaylistForm;
 			}
 		?>
-	
+	<script src="style.js"></script>
 	<br><br>
-	
+	<hr>
+                    <footer>
+                    <div class="text-center">
+                    &copy;2017 Database of Motivational Videos
+                    </div>
+                    </footer>
 
 </html>
