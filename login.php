@@ -57,7 +57,7 @@ INVALID;
                 <input type="submit" name="login" value="Log In" />
             </form>
             <form action="createAccount.php" method="post">
-                &nbsp;or&nbsp;<input type="submit" name="createAccount" value="Create a new account" />
+                &nbsp;or&nbsp;<br><input type="submit" name="createAccount" value="Create a new account" />
             </form>
 FORM;
     }
@@ -85,7 +85,7 @@ FORM;
                         </div>
                     </header>
                     <hr>
-                    <h4>Create Account</h4>
+                    <h4>User Login</h4>
                     $body
                     <hr>
                     <footer>

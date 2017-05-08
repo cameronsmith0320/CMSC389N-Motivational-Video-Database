@@ -1,7 +1,15 @@
 header{
     margin: auto;
+	width: 50%
     padding: 0.5em;
 }
+
+.center{
+    margin: auto;
+	width: 50%
+    padding: 0.5em;
+}
+
 footer {
     text-align: center;
     font-size: 85%;
