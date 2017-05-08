@@ -55,7 +55,11 @@ SearchBar;
 		<h1> $username's Playlists</h1>
 		<form action="mainPage.php" method="post">
 			$playlists_form
-			<input type="submit" value="submit">
+			<input type="submit" value="View Playlist">
+			<input type="hidden" name="username" value="$username">
+		</form>
+		<form action="playlist.php" method="post">
+			<input type="submit" value="Manage My Playlists">
 			<input type="hidden" name="username" value="$username">
 		</form>
 TEST;
@@ -77,7 +81,10 @@ TEST;
                     <header>
                         <div class="row">
                             <div class="col-xs-10">
-                                <h3>Database of Motivational Videos</h3>
+								<form action="myVideos.php" method="post">
+									<input type="image" src="DMV-logo.png" alt="Submit Form" />
+									<input type="hidden" name="username" value="$username">
+								</form>
 								$searchBar
                             </div>
                         </div>
@@ -86,10 +93,12 @@ TEST;
                     $body
                     <hr>
                     <footer>
-		    	&copy;2017 Database of Motivational Videos
+					&copy;2017 Database of Motivational Videos
                     </footer>
                 </div>
             </body>
+			
+
         </html>
 PAGE;
     echo $page;

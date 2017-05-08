@@ -28,7 +28,7 @@ if(!$result){
 }else{
     $num_rows = $result -> num_rows;
     if($num_rows === 0){
-        $table = "You have no playlists! Add a video to create a playlist.";
+        $table = "You have no playlists! Add a video to create a playlist. <br><br>";
     }else{
         $table = <<<TABLE
 <table class="table table-bordered table-hover">
@@ -92,7 +92,11 @@ $db_connection->close();
         <div class="container">
             <header>
                 <div class="pull-left">
-                    <h3>Database of Motivational Videos</h3>
+				<form action="myVideos.php" method="post">
+					<input type="image" src="DMV-logo.png" alt="Submit Form" />
+					<input type="hidden" name="username" value="$username">
+				</form>
+                   
                 </div>
                 <div class="pull-right">
                     <span class="loginbtn" id="loginbtn"></span>
@@ -111,9 +115,7 @@ $db_connection->close();
             <a href="playlist.php" class="btn btn-default"> Back </a>
             <br/>
             <hr>
-            <footer>
-                <span id="footer"></span>
-            </footer>
+            
         </div>
 
         <span id="phpjs-username" style="display: none;"><?php echo $username ?></span>

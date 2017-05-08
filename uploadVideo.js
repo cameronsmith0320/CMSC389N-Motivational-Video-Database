@@ -12,7 +12,7 @@ function playlistSelectChange(){
     if(select.options[select.selectedIndex].value == "new"){
         document.getElementById("newPlaylist").innerHTML = '\
                 <div class="form-group">\
-                    <label for="playlist"> Add to playlist </label>\
+                    <label for="playlist"> Name of new playlist </label>\
                     <input class="form-control" type="text" value="New Playlist" name="playlistCreate"/>\
                     <small class="form-text text-muted"> This will create a new playlist to hold your video </small>\
                 </div>\
