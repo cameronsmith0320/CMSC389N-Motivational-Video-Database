@@ -27,9 +27,33 @@ function processRequest() {
         if (requestObj.status === 200) {
             var results = requestObj.responseText;
             var resultsArr = results.split("|");
-            document.getElementById("usernameErrors").innerHTML = resultsArr[0];
-            document.getElementById("passwordErrors").innerHTML = resultsArr[1];
-            document.getElementById("emailErrors").innerHTML = resultsArr[2];
+            var usernameErrors = document.getElementById("usernameErrors");
+            var passwordErrors = document.getElementById("passwordErrors");
+            var emailErrors = document.getElementById("emailErrors");
+            if (resultsArr[0] === "") {
+                usernameErrors.className = "";
+                usernameErrors.innerHTML = resultsArr[0];
+            }
+            else {
+                usernameErrors.className = "alert alert-danger";
+                usernameErrors.innerHTML = resultsArr[0];
+            }
+            if (resultsArr[1] === "") {
+                passwordErrors.className = "";
+                passwordErrors.innerHTML = resultsArr[1];
+            }
+            else {
+                passwordErrors.className = "alert alert-danger";
+                passwordErrors.innerHTML = resultsArr[1];
+            }
+            if (resultsArr[2] === "") {
+                emailErrors.className = "";
+                emailErrors.innerHTML = resultsArr[2];
+            }
+            else {
+                emailErrors.className = "alert alert-danger";
+                emailErrorsinnerHTML = resultsArr[0];
+            }
         }
     }
 }
