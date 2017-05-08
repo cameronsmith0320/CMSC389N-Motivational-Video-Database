@@ -59,6 +59,7 @@ SearchBar;
             <button class="btn btn-default btn-sm" type="submit"> View Selected Playlist </button>
             <input type="hidden" name="username" value="$username">
         </form>
+		</br>
         <form action="playlist.php" method="post">
             <button class="btn btn-default btn-sm" type="submit"> Manage My Playlists </button>
             <input type="hidden" name="username" value="$username">

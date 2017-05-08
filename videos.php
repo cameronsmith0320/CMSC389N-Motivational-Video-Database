@@ -12,11 +12,6 @@ if(isset($_POST)){
         $result = $db_connection->query($query);
         if(!$result)
             die("Video deletion failed: ".$db_connection->error);
-    }elseif(isset($_POST['view'])){
-        $video_url = $_POST['view'];
-        $db_connection->close();
-        // view video
-        header("Location: $video_url");
     }
 }
 if(!isset($_GET['playlist_id'])){
@@ -73,7 +68,7 @@ TABLE;
 <td>
 <div class="form-group">
 <form method="POST">
-    <button class="btn btn-primary" type="submit" name="view" value="$video_url" target="_blank"> View </button>
+    <button class="btn btn-primary" type="submit" name="view" value="$video_url" onclick="window.open('$video_url')" target="_blank"> View </button>
     <button class="btn btn-danger" type="submit" onclick="return(confirm('Are you sure you want to delete this video?'));" name="delete" value="$video_url"> Delete </button>
 </form>
 </div>

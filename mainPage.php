@@ -114,6 +114,8 @@ PLAYLIST;
 				} 
 				
 				echo $addToPlaylistForm;
+			} else {
+				echo "Error: no playlist selected";
 			}
 		?>
 	<script src="style.js"></script>
