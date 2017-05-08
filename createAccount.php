@@ -74,7 +74,7 @@ SUBMIT;
         
         if (strlen($username) > 20) {
             $error_count++;
-            $errors .= '<div class="alert alert-danger" id="usernameErrors">Invalid username.</div>';
+            $errors .= '<div class="alert alert-danger" id="usernameErrors"><strong>Invalid username.</strong></div>';
         }
         else {
             $query1 = "select * from $table where username = '$username'";
@@ -87,7 +87,7 @@ SUBMIT;
                 $num_rows = $result1->num_rows;
                 if ($num_rows !== 0) {
                     $error_count++;
-                    $errors .= "<div id=\"usernameErrors\"><strong>Username taken.</strong><br></div>";
+                    $errors .= "<div class="alert alert-danger" id=\"usernameErrors\"><strong>Username taken.</strong><br></div>";
                 }
                 else {
                     $errors .= "<div id=\"usernameErrors\"></div>";
@@ -106,7 +106,7 @@ USER_VALID;
         }
         if ($verifyPassword !== $password) {
             $error_count++;
-            $errors .= '<div class="alert alert-danger" id="passwordErrors">Passwords do not match.</div>';
+            $errors .= '<div class="alert alert-danger" id="passwordErrors"><strong>Passwords do not match.</strong></div>';
         }
         else {
             $errors .= "<div id=\"passwordErrors\"></div>";
@@ -128,7 +128,7 @@ PASS_VALID;
         }
         if (strlen($email) > 30) {
             $error_count++;
-            $errors .= '<div class="alert alert-danger" id="emailErrors">Invalid email address.</div>';
+            $errors .= '<div class="alert alert-danger" id="emailErrors"><strong>Invalid email address.</strong></div>';
         }
         else {
             $errors .="<div id=\"emailErrors\"></div>";
