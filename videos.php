@@ -57,6 +57,13 @@ TABLE;
                 $result->data_seek($i);
                 $entry = $result->fetch_array(MYSQLI_ASSOC);
                 $video_url = $entry['video_url'];
+                $page = file_get_contents($video_url);
+                $doc = new DOMDocument();
+                $doc->loadHTML($page);
+                
+                $title_div = $doc->getElementById('eow-title');
+                $video_title = $title_div->nodeValue;
+                $table .= "<tr> <td>".$video_title."</td>";
                 $table .= "<tr> <td>".$video_url."</td>";
                 $table .= <<<ACTIONS
 <td>
