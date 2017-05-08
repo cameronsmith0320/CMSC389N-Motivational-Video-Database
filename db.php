@@ -7,8 +7,8 @@
     $dbpassword = "terps";
     $database = "motivationaldb"; // max lengths in form to be updated with actual max lengths from database, if needed
     $table = "users";
-    $username = 'test';
-    //$username = $_SESSION['username'];
+    //$username = 'test';
+    $username = $_SESSION['username'];
 
     $db_connection = new mysqli($host, $user, $dbpassword, $database);
     if ($db_connection->connect_error) {

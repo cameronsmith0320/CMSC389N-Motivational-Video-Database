@@ -33,7 +33,7 @@ CREATEPLAYLIST;
                     <select class="form-control" id="playlistSelect" name="playlistSelect">
 SELECTPLAYLIST;
             for($i = 0; $i < $num_rows; $i++){
-                $result -> data_seek(i);
+                $result -> data_seek($i);
                 $entry = $result->fetch_array(MYSQLI_ASSOC);
                 $playlistForm .= '<option value="'.$entry['playlist_id'].'">'.$entry['playlist_name'].'</option>';
             }
