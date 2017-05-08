@@ -5,6 +5,12 @@
 session_start();
 require_once("db.php");
 
+$url_placeholder = 'placeholder="https://www.youtube.com/watch?v=6bdHBoG2bLY"';
+
+if(isset($_POST['video_url'])) {
+	$url_placeholder = 'value="'.$_POST['video_url'].'"';
+}
+
 if(!isset($_POST['submit'])){
     // Page loaded for the first time, display playlist forms dynamically depending
     // on if there are playlists existing for the user
@@ -121,7 +127,7 @@ ENDTAGS;
             <form action="" method="POST">
                 <div class="form-group">
                     <label for="upload"> Add a video link </label>
-                    <input required class="form-control" type="text" placeholder="https://www.youtube.com/watch?v=6bdHBoG2bLY" name="link"/>
+                    <input required class="form-control" type="text" <?php echo $url_placeholder ?> name="link"/>
                 </div>
 				
 			<?php echo $playlistForm ?>
