@@ -8,7 +8,7 @@ require_once("db.php");
 $url_placeholder = 'placeholder="https://www.youtube.com/watch?v=6bdHBoG2bLY"';
 
 if(isset($_POST['video_url'])) {
-	$url_placeholder = 'value="'.$_POST['video_url'].'"';
+    $url_placeholder = 'value="'.$_POST['video_url'].'"';
 }
 
 if(!isset($_POST['submit'])){
@@ -111,7 +111,10 @@ ENDTAGS;
         <div class="container">
             <header>
                 <div class="pull-left">
-                    <h3>Database of Motivational Videos</h3>
+                    <form action="myVideos.php" method="post">
+                        <input type="image" src="DMV-logo.png" alt="Submit Form" />
+                        <input type="hidden" name="username" value="$username">
+                    </form>
                 </div>
                 <div class="pull-right">
                     <span class="loginbtn" id="loginbtn"></span>
@@ -129,9 +132,7 @@ ENDTAGS;
                     <label for="upload"> Add a video link </label>
                     <input required class="form-control" type="text" <?php echo $url_placeholder ?> name="link"/>
                 </div>
-				
-			<?php echo $playlistForm ?>
-			
+            <?php echo $playlistForm ?>
                 <span id="newPlaylist"></span>
 
                     <br>

@@ -48,6 +48,7 @@ if($num_rows === 0){
         <table class="table table-bordered table-hover">
         <thead>
             <tr>
+                <th> Video Title </th>
                 <th> Video Link </th>
                 <th> Actions </th>
             </tr>
@@ -60,11 +61,11 @@ TABLE;
                 $page = file_get_contents($video_url);
                 $doc = new DOMDocument();
                 $doc->loadHTML($page);
-                
                 $title_div = $doc->getElementById('eow-title');
                 $video_title = $title_div->nodeValue;
-                $table .= "<tr> <td>".$video_title."</td>";
-                $table .= "<tr> <td>".$video_url."</td>";
+                if(!$video_title)
+                    $video_title = "Untitled Video";
+                $table .= "<tr> <td>".$video_title."</td> <td>".$video_url."</td>";
                 $table .= <<<ACTIONS
 <td>
 <div class="form-group">
@@ -101,7 +102,10 @@ ACTIONS;
         <div class="container">
             <header>
                 <div class="pull-left">
-                    <h3>Database of Motivational Videos</h3>
+                    <form action="myVideos.php" method="post">
+                        <input type="image" src="DMV-logo.png" alt="Submit Form" />
+                        <input type="hidden" name="username" value="$username">
+                    </form>
                 </div>
                 <div class="pull-right">
                     <span class="loginbtn" id="loginbtn"></span>
@@ -116,6 +120,7 @@ ACTIONS;
 
             <?php echo $table?>
 
+            <br/>
             <a href="uploadVideo.php" class="btn btn-primary"> Add Video </a>
             <a href="playlist.php" class="btn btn-default"> Back </a>
             <br/>

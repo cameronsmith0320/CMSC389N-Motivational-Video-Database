@@ -63,7 +63,7 @@ TABLE;
 <form method="POST">
     <button class="btn btn-primary" type="submit" name="view" value="$playlist_id"> View </button>
     <!-- <button class="btn btn-primary" type="submit" name="rename" value="$playlist_id"> Rename </button> -->
-    <button class="btn btn-danger" type="submit" onclick="return(confirm('Are you sure you want to delete $playlist_name?'));" name="delete" value="$playlist_id"> Delete </button>
+    <button class="btn btn-danger" type="submit" onclick="return(confirm('Are you sure you want to delete $playlist_name?');" name="delete" value="$playlist_id"> Delete </button>
 </form>
 </div>
 </td>
@@ -92,11 +92,10 @@ $db_connection->close();
         <div class="container">
             <header>
                 <div class="pull-left">
-				<form action="myVideos.php" method="post">
-					<input type="image" src="DMV-logo.png" alt="Submit Form" />
-					<input type="hidden" name="username" value="$username">
-				</form>
-                   
+                    <form action="myVideos.php" method="post">
+                        <input type="image" src="DMV-logo.png" alt="Submit Form" />
+                        <input type="hidden" name="username" value="$username">
+                    </form>
                 </div>
                 <div class="pull-right">
                     <span class="loginbtn" id="loginbtn"></span>
@@ -111,6 +110,7 @@ $db_connection->close();
 
             <?php echo $table?>
 
+            <br/>
             <a href="uploadVideo.php" class="btn btn-primary"> Add Video </a>
             <a href="myVideos.php" class="btn btn-default"> Back </a>
             <br/>
