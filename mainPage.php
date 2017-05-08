@@ -26,8 +26,7 @@
 		
 		<?php
 			if(isset($_POST['playlist_selected'])) {
-				session_start();
-				$username = $_SESSION['username'];
+				$username = $_POST['username'];
 				$playlist_name = $_POST['playlist_selected'];
 				
 				$playlist_id = null;
@@ -79,30 +78,34 @@
 					}
 				}
 				
-				if(sizeof($list_of_video_ids) >= 2){
-					$video_player .= $list_of_video_ids[0].'?playlist=';
-					for($i = 1; $i < sizeof($list_of_video_ids); $i++) {
-						$video_player .= $list_of_video_ids[$i].',';
-					}
-					$video_player = rtrim($video_player, ',');
-					$video_player .= '"frameborder="0" allowfullscreen>></iframe>';
-					echo $video_player;
-				} else if(sizeof($list_of_video_ids) == 1){
-					$video_player .= $list_of_video_ids[0];
-					$video_player .= '"frameborder="0" allowfullscreen>></iframe>';
-					echo $video_player;
-				} else {
+				if(sizeof($list_of_video_ids) == 0) {
 					echo "<bold>Error: no videos in playlist</bold>";
-				}
+				} else {
+					if(sizeof($list_of_video_ids) >= 2){
+						$video_player .= $list_of_video_ids[0].'?playlist=';
+						for($i = 1; $i < sizeof($list_of_video_ids); $i++) {
+							$video_player .= $list_of_video_ids[$i].',';
+						}
+						$video_player = rtrim($video_player, ',');
+					} else {
+						$video_player .= $list_of_video_ids[0];
+					}
+					$video_player .= '"frameborder="0" allowfullscreen>></iframe>';
+					echo $video_player;
+				} 
+				$firstVideoUrl = "https://www.youtube.com/watch?v=".$list_of_video_ids[0];
+				$addToPlaylistForm = <<<PLAYLIST
+					<form action="uploadVideo.php" method="post">
+						<input type="hidden" name="video_url" value="$firstVideoUrl">
+						<input class="btn btn-primary" type="submit" value="Add to my playlist"/>
+					</form>
+PLAYLIST;
+				
+				echo $addToPlaylistForm;
 			}
 		?>
 	
 	<br><br>
-	
-	<input class="btn btn-primary" type="submit" value="Add to my playlist"/>
-	<form action="main.html">
-			
-	</form>
 	
 
 </html>
