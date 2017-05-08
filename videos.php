@@ -6,7 +6,7 @@ require_once("db.php");
 
 if(isset($_POST)){
     if(isset($_POST['delete'])){
-        $video_url = $_POST['delete'];
+        $video_url = sanitize($db_connection,$_POST['delete']);
         $query = "DELETE FROM playlist_to_video WHERE video_url='$video_url'";
         $result = $db_connection->query($query);
         if(!$result)
