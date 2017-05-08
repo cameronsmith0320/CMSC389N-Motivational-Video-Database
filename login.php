@@ -28,14 +28,22 @@
             $num_rows = $result->num_rows;
             if ($num_rows === 0) {
                 $body = <<<INVALID
+                <div class="alert alert-danger"> <strong>Invalid username-password combination.</strong> Please try again.</div>
                 <form action="{$_SERVER["PHP_SELF"]}" method="post">
-                    <strong>Username: </strong><input type="text" name="username" value="$username" required /><br>
-                    <strong>Password: </strong><input type="password" name="password" required /><br>
-                    <h3>Invalid username-password combination. Please try again.</h3><br>
-                    <input type="submit" name="login" value="Log In" />
-                </form>
-                <form action="createAccount.php" method="post">
-                    &nbsp;or&nbsp;<input type="submit" name="createAccount" value="Create a new account" />
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="username"> Username </label>
+                        <div class="col-sm-5">
+                            <input class="form-control" id="username" type="text" name="username" value="$username" required /><br>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="password"> Password </label>
+                        <div class="col-sm-5">
+                            <input class="form-control" id="password" type="password" name="password" required /><br>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit" name="login"> Login </button>
+                    <a href="createAccount.php" class="btn btn-secondary" type="submit" name="createAccount"> Create a new account </a>
                 </form>
 INVALID;
             }
@@ -51,14 +59,22 @@ INVALID;
     }
     else {
         $body = <<<FORM
-            <form action="{$_SERVER["PHP_SELF"]}" method="post">
-                <strong>Username: </strong><input type="text" name="username" required /><br>
-                <strong>Password: </strong><input type="password" name="password" required /><br>
-                <input type="submit" name="login" value="Log In" />
-            </form>
-            <form action="createAccount.php" method="post">
-                <input type="submit" name="createAccount" value="Create a new account" />
-            </form>
+                <form action="{$_SERVER["PHP_SELF"]}" method="post">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="username"> Username </label>
+                        <div class="col-sm-5">
+                            <input class="form-control" id="username" type="text" name="username" value="$username" required /><br>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="password"> Password </label>
+                        <div class="col-sm-5">
+                            <input class="form-control" id="password" type="password" name="password" required /><br>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit" name="login"> Login </button>
+                    <a href="createAccount.php" class="btn btn-secondary" type="submit" name="createAccount"> Create a new account </a>
+                </form>
 FORM;
     }
     
@@ -78,19 +94,9 @@ FORM;
             <body>
                 <div class="container">
                     <header>
-                        <div class="row">
-                             <div class="pull-left">
 								<form action="index.html" method="post">
 									<input type="image" src="DMV-logo.png" alt="Submit Form" />
 								</form>
-                            </div>
-		
-		<div class="pull-right">
-			<form action="createAccount.php">
-				<button class="btn btn-default btn-sm" type="submit" id="logout"> Sign Up </button>
-				</form>
-		</div>
-                        </div>
                     </header>
                     <hr>
                     <h4>Login</h4>
