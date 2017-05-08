@@ -121,7 +121,7 @@ ENDTAGS;
             <form action="" method="POST">
                 <div class="form-group">
                     <label for="upload"> Add a video link </label>
-                    <input class="form-control" type="text" placeholder="https://www.youtube.com/watch?v=6bdHBoG2bLY" name="link"/>
+                    <input required class="form-control" type="text" placeholder="https://www.youtube.com/watch?v=6bdHBoG2bLY" name="link"/>
                 </div>
 <?php echo $playlistForm ?>
                 <span id="newPlaylist"></span>

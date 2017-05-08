@@ -4,58 +4,77 @@
 session_start();
 require_once("db.php");
 
-if(!isset($_POST['submit'])){
-    $query = "SELECT * FROM playlist WHERE username='$username' ORDER BY playlist_id";
-    $result = $db_connection->query($query);
-    if(!$result){
-        die("Playlist query failed: ".$db_connection->error);
+if(isset($_POST)){
+    if(isset($_POST['delete'])){
+        $playlist_id = $_POST['delete'];
+        $query = "DELETE FROM playlist WHERE playlist_id='$playlist_id'";
+        $result = $db_connection->query($query);
+        if(!$result)
+            die("Playlist deletion failed: ".$db_connection->error);
+        $query = "DELETE FROM playlist_to_video WHERE playlist_id='$playlist_id'";
+        $result = $db_connection->query($query);
+        if(!$result)
+            die("Video Linking deletion failed: ".$db_connection->error);
+    }elseif(isset($_POST['view'])){
+        $playlist_id = $_POST['view'];
+        $db_connection->close();
+        header("Location: videos.php?playlist_id=$playlist_id");
+    }
+}
+$query = "SELECT * FROM playlist WHERE username='$username' ORDER BY playlist_id";
+$result = $db_connection->query($query);
+if(!$result){
+    die("Playlist query failed: ".$db_connection->error);
+}else{
+    $num_rows = $result -> num_rows;
+    if($num_rows === 0){
+        $table = "You have no playlists! Add a video to create a playlist.";
     }else{
-        $num_rows = $result -> num_rows;
-        if($num_rows === 0){
-            $table = "You have no playlists! Add a video to create a playlist.";
-        }else{
-            $table = <<<TABLE
+        $table = <<<TABLE
 <table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th> Playlist Name </th>
-            <th> Videos </th>
-            <th> Actions </th>
-        </tr>
-    </thead>
+<thead>
+    <tr>
+        <th> Playlist Name </th>
+        <th> Videos </th>
+        <th> Actions </th>
+    </tr>
+</thead>
 TABLE;
-            for($i = 0; $i < $num_rows; $i++){
-                $result -> data_seek($i);
-                $entry = $result->fetch_array(MYSQLI_ASSOC);
-                $table .= "<tr> <td>".$entry['playlist_name']."</td>";
-                //get video count
-                $query = "SELECT COUNT(video_url) AS cnt FROM playlist_to_video WHERE playlist_id='".$entry['playlist_id']."'";
-                $countresult = $db_connection->query($query);
-                if(!$countresult){
-                    die("Video Count failed: ".$db_connection->error);
-                }else{
-                    $countresult->data_seek(0);
-                    $count = $countresult->fetch_array(MYSQLI_ASSOC);
-                    $count = $count['cnt'];
-                }
-                $table .= "<td> $count </td>";
-                $table .= <<<ACTIONS
+        for($i = 0; $i < $num_rows; $i++){
+            $result -> data_seek($i);
+            $entry = $result->fetch_array(MYSQLI_ASSOC);
+            $playlist_id = $entry['playlist_id'];
+            $playlist_name = $entry['playlist_name'];
+            $table .= "<tr> <td>".$playlist_name."</td>";
+            //get video count
+            $query = "SELECT COUNT(video_url) AS cnt FROM playlist_to_video WHERE playlist_id='".$playlist_id."'";
+            $countresult = $db_connection->query($query);
+            if(!$countresult){
+                die("Video Count failed: ".$db_connection->error);
+            }else{
+                $countresult->data_seek(0);
+                $count = $countresult->fetch_array(MYSQLI_ASSOC);
+                $count = $count['cnt'];
+            }
+            $table .= "<td> $count </td>";
+            $table .= <<<ACTIONS
 <td>
 <div class="form-group">
-    <form method="POST">
-        <button class="btn btn-primary" type="submit" name="rename"> Rename </button>
-        <button class="btn btn-danger" type="submit" name="delete"> Delete </button>
-    </form>
+<form method="POST">
+    <button class="btn btn-primary" type="submit" name="view" value="$playlist_id"> View </button>
+    <!-- <button class="btn btn-primary" type="submit" name="rename" value="$playlist_id"> Rename </button> -->
+    <button class="btn btn-danger" type="submit" onclick="return(confirm('Are you sure you want to delete $playlist_name?'));" name="delete" value="$playlist_id"> Delete </button>
+</form>
 </div>
 </td>
 ACTIONS;
-                $table .= "</tr>";
-            }
-            $table .= "</table>";
-
+            $table .= "</tr>";
         }
+        $table .= "</table>";
+
     }
 }
+$db_connection->close();
 
 ?>
 
@@ -76,9 +95,7 @@ ACTIONS;
                     <h3>Database of Motivational Videos</h3>
                 </div>
                 <div class="pull-right">
-                    <form action="logout.php">
-                        <button class="btn btn-default btn-sm" type="submit" id="logout"> logout </button>
-                    </form>
+                    <span class="loginbtn" id="loginbtn"></span>
                 </div>
                 <div class="pull-right">
                     <span class="username" id="username"></span>
@@ -88,7 +105,10 @@ ACTIONS;
             </header>
             <hr>
 
-<?php echo $table?>
+            <?php echo $table?>
+
+            <a href="uploadVideo.php" class="btn btn-primary"> Add Video </a>
+            <a href="playlist.php" class="btn btn-default"> Back </a>
             <br/>
             <hr>
             <footer>
@@ -96,6 +116,7 @@ ACTIONS;
             </footer>
         </div>
 
+        <span id="phpjs-username" style="display: none;"><?php echo $username ?></span>
         <script src="style.js"></script>
     </body>
 </html>
