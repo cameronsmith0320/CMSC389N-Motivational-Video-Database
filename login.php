@@ -57,7 +57,7 @@ INVALID;
                 <input type="submit" name="login" value="Log In" />
             </form>
             <form action="createAccount.php" method="post">
-                &nbsp;or&nbsp;<input type="submit" name="createAccount" value="Create a new account" />
+                <input type="submit" name="createAccount" value="Create a new account" />
             </form>
 FORM;
     }
@@ -79,13 +79,21 @@ FORM;
                 <div class="container">
                     <header>
                         <div class="row">
-                            <div class="col-xs-10">
-                                <h3>Database of Motivational Videos</h3>
+                             <div class="pull-left">
+								<form action="index.html" method="post">
+									<input type="image" src="DMV-logo.png" alt="Submit Form" />
+								</form>
                             </div>
+		
+		<div class="pull-right">
+			<form action="createAccount.php">
+				<button class="btn btn-default btn-sm" type="submit" id="logout"> Sign Up </button>
+				</form>
+		</div>
                         </div>
                     </header>
                     <hr>
-                    <h4>Create Account</h4>
+                    <h4>Login</h4>
                     $body
                     <hr>
                     <footer>

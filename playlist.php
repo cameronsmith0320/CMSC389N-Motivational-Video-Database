@@ -112,7 +112,7 @@ $db_connection->close();
             <?php echo $table?>
 
             <a href="uploadVideo.php" class="btn btn-primary"> Add Video </a>
-            <a href="playlist.php" class="btn btn-default"> Back </a>
+            <a href="myVideos.php" class="btn btn-default"> Back </a>
             <br/>
             <hr>
             

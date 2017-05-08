@@ -11,16 +11,23 @@
 	
 	<body>
 		 <header>
-                <div class="pull-left">
-                    <h3>Database of Motivational Videos</h3>
-                </div>
-                <div class="pull-right">
-                    <span class="username"></span>
-                    <form action="logout.php">
-                        <button class="btn btn-default btn-sm" type="submit" id="logout"> logout </button>
-                    </form>
-                </div>
-                <div class="clearfix"></div>
+		 <div class="container">
+                <div class="row">
+                            <div class="pull-left">
+								<form action="myVideos.php" method="post">
+									<input type="image" src="DMV-logo.png" alt="Submit Form" />
+									<input type="hidden" name="username" value="$username">
+								</form>
+                            </div>
+							
+							<div class="pull-right">
+								<form action="index.html">
+								<button class="btn btn-default btn-sm" type="submit" id="logout"> Logout </button>
+								
+							</form>
+						</div>
+                        </div>
+						<div>
             </header>
             <hr>
 		
@@ -31,7 +38,7 @@
 				
 				$playlist_id = null;
 				$list_of_video_ids = [];
-				$video_player = '<iframe id="video" width="420" height="315" src="//www.youtube.com/embed/';
+				$video_player = '<iframe id="video" width="650" height="487" src="//www.youtube.com/embed/';
 				
 				$host = "localhost";
 				$user = "server";
@@ -91,14 +98,19 @@
 						$video_player .= $list_of_video_ids[0];
 					}
 					$video_player .= '"frameborder="0" allowfullscreen>></iframe>';
+					echo '<div class="text-center">';
 					echo $video_player;
+					echo '</div>';
+					
 				} 
 				$firstVideoUrl = "https://www.youtube.com/watch?v=".$list_of_video_ids[0];
 				$addToPlaylistForm = <<<PLAYLIST
+				<div class="text-center">'
 					<form action="uploadVideo.php" method="post">
 						<input type="hidden" name="video_url" value="$firstVideoUrl">
 						<input class="btn btn-primary" type="submit" value="Add to my playlist"/>
 					</form>
+				</div>
 PLAYLIST;
 				
 				echo $addToPlaylistForm;

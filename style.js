@@ -17,7 +17,7 @@ function main(){
 
     if(php_user){
         username = "logged in as: " + php_user;
-        loginbtn.innerHTML = '<a href="logout.php" class="btn btn-default btn-sm"> logout </a>';
+        loginbtn.innerHTML = '<a href="index.html" class="btn btn-default btn-sm"> Logout </a>';
     }else{
         username = "Not logged in. ";
         loginbtn.innerHTML = '<a href="createAccount.php" class="btn btn-primary btn-sm"> new account </a>' +

@@ -43,9 +43,10 @@
 	}
 	
 	$searchBar = <<<SearchBar
+	<br>
 		<form action="{$_SERVER["PHP_SELF"]}" method="post">
 			<input type="text" name="search_username" placeholder="Search by username...">
-			<input type="submit" value="Search">
+			<button class="btn btn-default btn-sm" type="submit" > Search </button>
 		</form>
 SearchBar;
 
@@ -55,11 +56,11 @@ SearchBar;
 		<h1> $username's Playlists</h1>
 		<form action="mainPage.php" method="post">
 			$playlists_form
-			<input type="submit" value="View Playlist">
+			<button class="btn btn-default btn-sm" type="submit"> View Selected Playlist </button>
 			<input type="hidden" name="username" value="$username">
 		</form>
 		<form action="playlist.php" method="post">
-			<input type="submit" value="Manage My Playlists">
+			<button class="btn btn-default btn-sm" type="submit"> Manage My Playlists </button>
 			<input type="hidden" name="username" value="$username">
 		</form>
 TEST;
@@ -73,27 +74,38 @@ TEST;
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
                 <script src="createAccountValidation.js"></script>
-                <title>Login - Database of Motivational Videos</title>
+                <title>Database of Motivational Videos</title>
             </head>
             
             <body>
                 <div class="container">
                     <header>
                         <div class="row">
-                            <div class="col-xs-10">
+                            <div class="pull-left">
 								<form action="myVideos.php" method="post">
 									<input type="image" src="DMV-logo.png" alt="Submit Form" />
 									<input type="hidden" name="username" value="$username">
 								</form>
+                            </div>
+							<div class="text-center">
 								$searchBar
                             </div>
+							<div class="pull-right">
+								<form action="index.html">
+								<button class="btn btn-default btn-sm" type="submit" id="logout"> Logout </button>   
+								
+							</form>
+						</div>
                         </div>
+						
                     </header>
                     <hr>
                     $body
                     <hr>
                     <footer>
+					<div class="text-center">
 					&copy;2017 Database of Motivational Videos
+					</div>
                     </footer>
                 </div>
             </body>

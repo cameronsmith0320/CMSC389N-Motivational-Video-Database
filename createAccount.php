@@ -6,17 +6,17 @@
     $error_count = 0;
     $errors = "";
     $usernameForm = <<<USER
-        Username: <input type="text" name="username" id="username" onblur="validate()" required />&nbsp;&nbsp;<em>Usernames must be no longer than 20 characters.</em><br>
+        <strong>Username:</strong> <input type="text" name="username" id="username" onblur="validate()" required /><br>
 USER;
     $passwordForm = <<<PASS
-        Password: <input type="password" id="password" name="password" required /><br>
-        Verify Password: <input type="password" name="verifyPassword" id="verifyPassword" onblur="validate()" required /><br>
+        <strong>Password:</strong> <input type="password" id="password" name="password" required /><br>
+        <strong>Verify Password:</strong> <input type="password" name="verifyPassword" id="verifyPassword" onblur="validate()" required /><br>
 PASS;
     $emailForm = <<<EMAIL
-        Email: <input type="email" id="email" name="email" onblur="validate()" required />&nbsp;&nbsp;<em>Email addresses must be no longer than 30 characters.</em><br>
+        <strong>Email:</strong> <input type="email" id="email" name="email" onblur="validate()" required /><br>
 EMAIL;
 	$imageForm = <<<IMAGE
-		Profile Picture:<input type="file" name="profileImage">
+		<strong>Profile Picture:</strong><input type="file" name="profileImage">
 IMAGE;
     $submitButton = <<<SUBMIT
         <input type="submit" name="create" value="Create Account" />
@@ -155,12 +155,24 @@ FORM;
             <body>
                 <div class="container">
                     <header>
-                        <div class="row">
-                            <div class="col-xs-10">
-                                <h3>Database of Motivational Videos</h3>
+		 <div class="container">
+                <div class="row">
+                            <div class="pull-left">
+								<form action="index.html" method="post">
+									<input type="image" src="DMV-logo.png" alt="Submit Form" />
+								</form>
                             </div>
+							
+							<div class="pull-right">
+								<form action="login.php">
+								<button class="btn btn-default btn-sm" type="submit" id="login"> Login </button>
+								
+							</form>
+						</div>
                         </div>
-                    </header>
+						<div>
+            </header>
+            <hr>
                     <hr>
                     <h4>Create Account</h4>
                     $body
