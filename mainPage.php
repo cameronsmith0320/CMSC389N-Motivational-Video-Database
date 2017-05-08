@@ -85,6 +85,7 @@
 					}
 				}
 				
+				$addToPlaylistForm = "";
 				if(sizeof($list_of_video_ids) == 0) {
 					echo "<bold>Error: no videos in playlist</bold>";
 				} else {
@@ -101,17 +102,16 @@
 					echo '<div class="text-center">';
 					echo $video_player;
 					echo '</div>';
-					
+					$firstVideoUrl = "https://www.youtube.com/watch?v=".$list_of_video_ids[0];
+					$addToPlaylistForm = <<<PLAYLIST
+					<div class="text-center">'
+						<form action="uploadVideo.php" method="post">
+							<input type="hidden" name="video_url" value="$firstVideoUrl">
+							<input class="btn btn-primary" type="submit" value="Add to my playlist"/>
+						</form>
+					</div>
+PLAYLIST;	
 				} 
-				$firstVideoUrl = "https://www.youtube.com/watch?v=".$list_of_video_ids[0];
-				$addToPlaylistForm = <<<PLAYLIST
-				<div class="text-center">'
-					<form action="uploadVideo.php" method="post">
-						<input type="hidden" name="video_url" value="$firstVideoUrl">
-						<input class="btn btn-primary" type="submit" value="Add to my playlist"/>
-					</form>
-				</div>
-PLAYLIST;
 				
 				echo $addToPlaylistForm;
 			}
