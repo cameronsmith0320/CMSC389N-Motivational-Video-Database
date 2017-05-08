@@ -178,6 +178,9 @@ BODY;
     }
     else {
         $body = <<<FORM
+	    <div id="usernameErrors"></div>
+            <div id="passwordErrors"></div>
+            <div id="emailErrors"></div>
             <form action="{$_SERVER["PHP_SELF"]}" method="post" enctype="multipart/form-data">
                 $usernameForm
                 $passwordForm
