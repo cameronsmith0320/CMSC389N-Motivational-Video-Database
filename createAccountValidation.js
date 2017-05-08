@@ -52,7 +52,7 @@ function processRequest() {
             }
             else {
                 emailErrors.className = "alert alert-danger";
-                emailErrorsinnerHTML = resultsArr[0];
+                emailErrors.innerHTML = resultsArr[2];
             }
         }
     }
