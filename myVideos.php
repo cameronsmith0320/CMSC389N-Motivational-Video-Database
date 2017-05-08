@@ -1,6 +1,14 @@
 <?php
 	session_start();
 	$username = $_SESSION['username'];
+	if(isset($_POST['search_username'])){
+		$_SESSION['search_username'] = $_POST['search_username'];
+		$username = $_POST['search_username'];
+	} else {
+		if(isset($_SESSION['search_username'])){
+			unset($_SESSION['search_username']);
+		}
+	}
 	
 	$playlists_form = "";
 	
@@ -14,6 +22,8 @@
 	if ($db_connection->connect_error) {
 		die($db_connection->connect_error);
 	}
+	
+	
 	
 	$query = "select * from $table where username = '$username'";
 	$result = $db_connection->query($query);
@@ -31,15 +41,22 @@
 			}
 		}
 	}
+	
+	$searchBar = <<<SearchBar
+		<form action="{$_SERVER["PHP_SELF"]}" method="post">
+			<input type="text" name="search_username" placeholder="Search by username...">
+			<input type="submit" value="Search">
+		</form>
+SearchBar;
 
 	$body = <<<TEST
 		<img src = fetchImage.php?name width=200 height=200>
 		</br></br>
-		<h1>Welcome $username</h1>
-		Select your playlist:
+		<h1> $username's Playlists</h1>
 		<form action="mainPage.php" method="post">
 			$playlists_form
 			<input type="submit" value="submit">
+			<input type="hidden" name="username" value="$username">
 		</form>
 TEST;
 	
@@ -61,6 +78,7 @@ TEST;
                         <div class="row">
                             <div class="col-xs-10">
                                 <h3>Database of Motivational Videos</h3>
+								$searchBar
                             </div>
                         </div>
                     </header>

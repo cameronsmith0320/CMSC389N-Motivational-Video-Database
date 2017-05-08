@@ -9,6 +9,10 @@
 	$database = "motivationaldb"; // max lengths in form to be updated with actual max lengths from database, if needed
 	$table = "users";
 	$username = $_SESSION['username'];
+	
+	if(isset($_SESSION['search_username'])){
+		$username = $_SESSION['search_username'];
+	}
 
 	$db_connection = new mysqli($host, $user, $dbpassword, $database);
 	if ($db_connection->connect_error) {
