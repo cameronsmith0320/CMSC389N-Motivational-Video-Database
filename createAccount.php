@@ -87,7 +87,7 @@ SUBMIT;
                 $num_rows = $result1->num_rows;
                 if ($num_rows !== 0) {
                     $error_count++;
-                    $errors .= "<div class="alert alert-danger" id=\"usernameErrors\"><strong>Username taken.</strong><br></div>";
+                    $errors .= '<div class="alert alert-danger" id=\"usernameErrors\"><strong>Username taken.</strong><br></div>';
                 }
                 else {
                     $errors .= "<div id=\"usernameErrors\"></div>";
