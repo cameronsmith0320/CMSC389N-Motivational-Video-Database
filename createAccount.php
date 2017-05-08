@@ -177,12 +177,10 @@ BODY;
         }
     }
     else {
-	    $errors.= <<<ERROR
-                <div class="" id="usernameErrors"></div>
+        $body = <<<FORM
+	<div class="" id="usernameErrors"></div>
                 <div class="" id="passwordErrors"></div>
                 <div class="" id="emailErrors"></div>
-ERROR;
-        $body = <<<FORM
             <form action="{$_SERVER["PHP_SELF"]}" method="post" enctype="multipart/form-data">
                 $usernameForm
                 $passwordForm
