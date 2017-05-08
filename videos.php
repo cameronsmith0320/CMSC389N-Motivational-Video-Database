@@ -48,7 +48,6 @@ if($num_rows === 0){
         <table class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th> Video Title </th>
                 <th> Video Link </th>
                 <th> Actions </th>
             </tr>
@@ -58,14 +57,17 @@ TABLE;
                 $result->data_seek($i);
                 $entry = $result->fetch_array(MYSQLI_ASSOC);
                 $video_url = $entry['video_url'];
-                $page = file_get_contents($video_url);
-                $doc = new DOMDocument();
-                $doc->loadHTML($page);
-                $title_div = $doc->getElementById('eow-title');
-                $video_title = $title_div->nodeValue;
-                if(!$video_title)
-                    $video_title = "Untitled Video";
-                $table .= "<tr> <td>".$video_title."</td> <td>".$video_url."</td>";
+                if (strpos($video_url, "youtube") !== false) {
+                    $page = file_get_contents($video_url);
+                    $doc = new DOMDocument();
+                    $doc->loadHTML($page);
+                    $title_div = $doc->getElementById('eow-title');
+                    $video_title = $title_div->nodeValue;
+                    $table .= "<tr> <td>".$video_title."</td>";
+                }
+                else {
+                    $table .= "<tr> <td>".$video_url."</td>";
+                }
                 $table .= <<<ACTIONS
 <td>
 <div class="form-group">
